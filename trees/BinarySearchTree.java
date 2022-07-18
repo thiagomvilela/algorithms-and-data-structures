@@ -28,7 +28,38 @@ public class BinarySearchTree {
 	}
 	
 	public void remove(int data) {
-		
+		removeInternal(this.root, data);
+	}
+	
+	private BinaryTreeNode removeInternal(BinaryTreeNode node, int data) {
+		if (node == null) {
+			return null;
+		} else if (data == node.getData()) {
+			if (node.getLeft() == null && node.getRight() == null) {
+				return null;
+			} else if (node.getLeft() == null || node.getRight() == null) {
+				if (node.getLeft() == null) {
+					return node.getRight();
+				} else {
+					return node.getLeft();
+				}
+			} else {
+				BinaryTreeNode largestAntecessor = node.getLeft();
+				while (largestAntecessor.getRight() != null) {
+					largestAntecessor = largestAntecessor.getRight();
+				}
+				
+				node.setData(largestAntecessor.getData());
+				node.setLeft(removeInternal(node.getLeft(), largestAntecessor.getData()));
+				return node;
+			}
+		} else if (data < node.getData()) {
+			node.setLeft(removeInternal(node.getLeft(), data));
+			return node;
+		} else {
+			node.setRight(removeInternal(node.getRight(), data));
+			return node;
+		}
 	}
 	
 	public boolean contains(int data) {
@@ -101,21 +132,29 @@ public class BinarySearchTree {
 		tree.add(1);
 		tree.add(6);
 		tree.add(9);
-		tree.add(5);
+//		tree.add(5);
+		
+//		tree.traversePreOrder();
+//		System.out.println();
+//		tree.traverseInOrder();
+//		System.out.println();
+//		tree.traversePostOrder();
+//		
+//		System.out.println();
+//		
+//		System.out.println(tree.contains(8));
+//		System.out.println(tree.contains(10));
+//		System.out.println(tree.contains(-20));
+//		System.out.println(tree.contains(5));
+//		System.out.println(tree.contains(100));
 		
 		tree.traversePreOrder();
 		System.out.println();
-		tree.traverseInOrder();
-		System.out.println();
-		tree.traversePostOrder();
 		
-		System.out.println();
+		tree.remove(5);
 		
-		System.out.println(tree.contains(8));
-		System.out.println(tree.contains(10));
-		System.out.println(tree.contains(-20));
-		System.out.println(tree.contains(5));
-		System.out.println(tree.contains(100));
+		tree.traversePreOrder();
+		System.out.println();
 	}
 	
 }
