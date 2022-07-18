@@ -1,11 +1,11 @@
 public class DoublyLinkedList<T> {
 
-	NodeLinkedList<T> head;
-	NodeLinkedList<T> tail;
+	NodeDoublyLinkedList<T> head;
+	NodeDoublyLinkedList<T> tail;
 	int size;
 	
 	public void add(T data){
-		NodeLinkedList<T> newNode = new NodeLinkedList<T>(data);
+		NodeDoublyLinkedList<T> newNode = new NodeDoublyLinkedList<T>(data);
 		
 		if(head == null && tail == null) {
 			this.head = newNode;
@@ -22,10 +22,10 @@ public class DoublyLinkedList<T> {
 	public T get(int position) {
 		
 		if (position > this.size/2) {
-			NodeLinkedList<T> foundNode = null;
+			NodeDoublyLinkedList<T> foundNode = null;
 			int i = this.size - 1;
 			
-			for (NodeLinkedList<T> currentNode = this.tail; 
+			for (NodeDoublyLinkedList<T> currentNode = this.tail; 
 					currentNode != null; 
 					currentNode = currentNode.getPrevious()) {
 				
@@ -39,10 +39,10 @@ public class DoublyLinkedList<T> {
 			
 			return foundNode == null ? null : foundNode.getData();
 		} else {
-			NodeLinkedList<T> foundNode = null;
+			NodeDoublyLinkedList<T> foundNode = null;
 			int i = 0;
 			
-			for (NodeLinkedList<T> currentNode = this.head; 
+			for (NodeDoublyLinkedList<T> currentNode = this.head; 
 					currentNode != null; 
 					currentNode = currentNode.getNext()) {
 				
