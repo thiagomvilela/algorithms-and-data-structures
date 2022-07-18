@@ -2,6 +2,8 @@ import java.util.Random;
 
 public class SortAlgorithms {
 
+	// === "SIMPLE" ALGORITHMS
+	
 	public static void bubbleSort(int[] array) {
 		if (array != null && array.length > 1) {
 			boolean swaped;
@@ -34,6 +36,20 @@ public class SortAlgorithms {
 			}
 		}
 	}
+
+	public static void insertionSort(int[] array) {
+		if (array != null && array.length > 1) {
+			for (int i = 1; i < array.length; i++) {
+				for (int j = i; (j > 0 && array[j] < array[j-1]); j--) {
+					int temp = array[j];
+					array[j] = array[j-1];
+					array[j-1] = temp;
+				}
+			}
+		}
+	}
+	
+	// ===== MERG SORT
 	
 	public static void mergeSort(int[] array) {
 		sort(array);
@@ -77,6 +93,7 @@ public class SortAlgorithms {
 		}
 	}
 
+	// QUICK SORT
 	
 	public static void quickSort(int[] array) {
 		if(array.length > 1) {
@@ -124,6 +141,8 @@ public class SortAlgorithms {
 		return down;
 	}
 
+	// ==== MAIN TEST METHOD
+	
 	public static void main(String[] args) {
 		Random random = new Random();
 		
@@ -139,10 +158,11 @@ public class SortAlgorithms {
 //		System.out.println();
 		
 		long start = System.currentTimeMillis();
-		mergeSort(array);
-//		quickSort(array);
 //		bubbleSort(array);
 //		selectionSort(array);
+//		insertionSort(array);
+//		mergeSort(array);
+//		quickSort(array);
 		long end = System.currentTimeMillis();
 		System.out.println(end - start);
 		
